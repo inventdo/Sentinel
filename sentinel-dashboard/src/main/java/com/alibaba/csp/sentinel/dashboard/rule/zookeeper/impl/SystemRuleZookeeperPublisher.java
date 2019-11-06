@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component("systemRuleCustomPublisher")
+@Component("systemRuleZKPublisher")
 @ConditionalOnBean(ZookeeperConfig.class)
 public class SystemRuleZookeeperPublisher extends AbstractRuleZookeeperPublisher<SystemRuleEntity> {
     @Autowired

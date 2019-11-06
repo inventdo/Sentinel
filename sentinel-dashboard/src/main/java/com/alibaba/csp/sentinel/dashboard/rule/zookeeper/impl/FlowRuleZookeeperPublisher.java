@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component("flowRuleCustomPublisher")
+@Component("flowRuleZKPublisher")
 @ConditionalOnBean(ZookeeperConfig.class)
 public class FlowRuleZookeeperPublisher extends AbstractRuleZookeeperPublisher<FlowRuleEntity> {
     @Autowired

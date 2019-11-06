@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component("systemRuleCustomProvider")
+@Component("systemRuleZKProvider")
 @ConditionalOnBean(ZookeeperConfig.class)
 public class SystemRuleZookeeperProvider extends AbstractRuleZookeeperProvider<SystemRuleEntity> {
 

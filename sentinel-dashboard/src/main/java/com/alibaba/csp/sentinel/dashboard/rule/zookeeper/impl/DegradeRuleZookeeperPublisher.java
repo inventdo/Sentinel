@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component("degradeRuleCustomPublisher")
+@Component("degradeRuleZKPublisher")
 @ConditionalOnBean(ZookeeperConfig.class)
 public class DegradeRuleZookeeperPublisher extends AbstractRuleZookeeperPublisher<DegradeRuleEntity> {
     @Autowired

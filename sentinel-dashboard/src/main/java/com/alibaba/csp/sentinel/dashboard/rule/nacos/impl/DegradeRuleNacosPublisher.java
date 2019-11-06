@@ -13,32 +13,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alibaba.csp.sentinel.dashboard.rule.zookeeper.impl;
+package com.alibaba.csp.sentinel.dashboard.rule.nacos.impl;
 
-import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.FlowRuleEntity;
-import com.alibaba.csp.sentinel.dashboard.rule.zookeeper.AbstractRuleZookeeperProvider;
-import com.alibaba.csp.sentinel.dashboard.rule.zookeeper.ZookeeperConfig;
+import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.DegradeRuleEntity;
+import com.alibaba.csp.sentinel.dashboard.rule.nacos.AbstractRuleNacosPublisher;
+import com.alibaba.csp.sentinel.dashboard.rule.nacos.NacosConfigUtils;
 import com.alibaba.csp.sentinel.datasource.Converter;
+import com.alibaba.nacos.api.config.ConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component("flowRuleZKProvider")
-@ConditionalOnBean(ZookeeperConfig.class)
-public class FlowRuleZookeeperProvider extends AbstractRuleZookeeperProvider<FlowRuleEntity> {
+/**
+ * @author Eric Zhao
+ * @since 1.4.0
+ */
+@Component("degradeRuleCustomPublisher")
+@ConditionalOnBean(NacosConfigUtils.class)
+public class DegradeRuleNacosPublisher extends AbstractRuleNacosPublisher<DegradeRuleEntity> {
+
 
     @Autowired
-    private  Converter<String, List<FlowRuleEntity>> converter;
+    private Converter<List<DegradeRuleEntity>, String> converter;
+
 
     @Override
-    protected String getType() {
-        return ZookeeperConfig.RULE_TYPE_FLOW;
+    protected Converter<List<DegradeRuleEntity>, String> getConvert() {
+        return converter;
     }
 
     @Override
-    protected   Converter<String, List<FlowRuleEntity>>getConverter() {
-        return converter;
+    protected String getType() {
+        return NacosConfigUtils.DEGRADE_DATA_ID_POSTFIX;
     }
 }
